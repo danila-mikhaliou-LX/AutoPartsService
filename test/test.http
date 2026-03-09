@@ -1,0 +1,50 @@
+# In the following requests the variable baseUrl is used.
+# Its value is set here.
+@baseUrl = http://localhost:4004
+
+
+
+### ------------------------------------------------------------------------
+# Get all books
+GET {{baseUrl}}/root/Products?$orderby=Price_amount%20asc
+
+
+### ------------------------------------------------------------------------
+# Get all authors
+GET {{baseUrl}}/admin/Authors
+
+
+### ------------------------------------------------------------------------
+# Create a new author, then update it and finally delete it again
+# @name createNewAuthor
+POST {{baseUrl}}/root/Products
+Content-Type: application/json
+
+{
+  "Name": "Sleek Granite Fish",
+  "Price_amount": "900",
+  "Price_currency": "EUR",
+  "Photo": "",
+  "Specs": "Ex velit quisquam fuga. Molestias omnis incidunt debitis aut. Dolores illo itaque recusandae odit. Error sit quo atque. Minima placeat harum nihil voluptatibus atque qui placeat voluptas quia. Minima voluptas omnis.",
+  "Rating": "1",
+  "SupplierInfo": "Doloremque quo aspernatur repudiandae recusandae et quas sunt qui soluta. Reiciendis molestiae minus architecto impedit quis in quidem quo distinctio. Voluptatem temporibus voluptate voluptas et iusto error. Asperiores deserunt non modi dolore. Et itaque quos laboriosam sit suscipit eveniet.",
+  "MadeIn": "Ukraine",
+  "ProductionCompanyName": "Runolfsson - Smitham",
+  "Status": "OUT_OF_STOCK",
+  "Store_ID": "d0618af0-00f2-4fa5-9327-9a88a9a1e6fd"
+}
+
+###
+
+@authorID = {{createNewAuthor.response.body.$.ID}}
+
+PATCH  {{baseUrl}}/admin/Authors({{authorID}})
+Content-Type: application/json
+
+{
+  "name": "Johann Christoph Friedrich Schiller"
+}
+
+###
+
+DELETE {{baseUrl}}/admin/Authors({{authorID}})

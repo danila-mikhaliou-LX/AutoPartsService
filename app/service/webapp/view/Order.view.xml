@@ -1,0 +1,127 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="service.controller.Order"
+    height="100%"
+>
+    <!-- We use the showFooter and dynamic page approaches often, but Page is good for FCL end column -->
+    <Page
+        title="Order Details"
+        showNavButton="{= ${appModel>/layout} !== 'OneColumn' }"
+        navButtonPress="onNavBack"
+    >
+        <content>
+            <ObjectHeader
+                title="Order #{= ${ID}.substring(0,8) }"
+                number="{
+                    path: 'Price_amount',
+                    type: 'sap.ui.model.type.Float',
+                    formatOptions: {
+                        minFractionDigits: 2,
+                        maxFractionDigits: 2
+                    }
+                }"
+                numberUnit="{Price_currency}"
+                class="sapUiResponsiveMargin"
+            >
+                <attributes>
+                    <ObjectAttribute
+                        title="Created Date"
+                        text="{
+                            path: 'createdAt',
+                            formatOptions: {
+                                style: 'long'
+                            }
+                        }"
+                    />
+                    <ObjectAttribute
+                        title="Estimated Delivery"
+                        text="{
+                            path: 'createdAt',
+                            formatter: '.formatter.deliveryDate'
+                        }"
+                    />
+                </attributes>
+            </ObjectHeader>
+            <Table
+                id="orderItemsTable"
+                items="{
+                    path: 'Items',
+                    parameters: {
+                        $expand: 'Product'
+                    }
+                }"
+                backgroundDesign="Transparent"
+            >
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title
+                            text="Products ({Items/$count})"
+                            level="H2"
+                        />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="Product" />
+                    </Column>
+                    <Column
+                        hAlign="Center"
+                        demandPopin="true"
+                        minScreenWidth="Tablet"
+                        popinDisplay="Inline"
+                    >
+                        <Text text="Quantity" />
+                    </Column>
+                    <Column
+                        hAlign="End"
+                        demandPopin="true"
+                        minScreenWidth="Desktop"
+                        popinDisplay="Inline"
+                    >
+                        <Text text="Price per unit" />
+                    </Column>
+                    <Column
+                        hAlign="End"
+                        demandPopin="true"
+                        minScreenWidth="Tablet"
+                        popinDisplay="WithoutHeader"
+                    >
+                        <Text text="Total Price" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Inactive">
+                        <cells>
+                            <ObjectIdentifier title="{Product/Name}" />
+                            <Text text="{Quantity}" />
+                            <ObjectNumber
+                                number="{
+                                    path: 'Product/Price_amount',
+                                    type: 'sap.ui.model.type.Float',
+                                    formatOptions: {
+                                        minFractionDigits: 2,
+                                        maxFractionDigits: 2
+                                    }
+                                }"
+                                unit="{Product/Price_currency}"
+                                state="None"
+                            />
+                            <ObjectNumber
+                                number="{
+                                    parts: [{
+                                        path: 'Product/Price_amount'
+                                    }, {
+                                        path: 'Quantity'
+                                    }],
+                                    formatter: '.formatter.calculateTotal'
+                                }"
+                                unit="{Product/Price_currency}"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

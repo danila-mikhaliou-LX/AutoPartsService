@@ -1,0 +1,125 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.uxap"
+    xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    controllerName="service.controller.Product"
+    height="100%"
+>
+    <ObjectPageLayout upperCaseAnchorBar="false">
+        <headerTitle>
+            <ObjectPageHeader
+                objectTitle="{Name}"
+                objectSubtitle="{Specs}"
+            >
+                <actions>
+                    <m:Button
+                        text="Back"
+                        press="onPressBack"
+                    />
+                    <m:Button
+                        text="Add to Cart"
+                        press="onPressAddToCart"
+                    />
+                    <m:Button
+                        text="Delete"
+                        press="onPressDelete"
+                    />
+                </actions>
+            </ObjectPageHeader>
+        </headerTitle>
+        <headerContent>
+            <m:VBox>
+                <m:ObjectStatus
+                    title="Supplier Info"
+                    text="{SupplierInfo}"
+                />
+                <m:ObjectStatus
+                    title="Status"
+                    text="{path: 'Status', formatter: '.formatter.statusText'}"
+                    state="{path: 'Status', formatter: '.formatter.statusState'}"
+                    inverted="true"
+                />
+                <m:RatingIndicator
+                    editable="false"
+                    maxValue="5"
+                    value="{Rating}"
+                />
+                <m:ObjectNumber
+                    class="sapMObjectNumberLarge"
+                    number="{
+        parts:[
+            {path:'Price_amount'},
+            {value: 'Price_currency'} ],
+        type: 'sap.ui.model.type.Currency',
+        formatOptions: {showMeasure: false}
+    }"
+                    unit="{Price_currency}"
+                />
+
+                <m:Image
+                    class='sapUiSmallMarginTop'
+                    src="{Photo}"
+                    width="40%"
+                />
+            </m:VBox>
+        </headerContent>
+        <sections>
+            <ObjectPageSection
+                titleUppercase="false"
+                title="Store Info"
+            >
+                <subSections>
+                    <ObjectPageSubSection>
+                        <m:VBox class="sapUiSmallMargin">
+                            <f:SimpleForm
+                                editable="false"
+                                title="Store Info"
+                            >
+                                <f:content>
+                                    <m:Label text="Name" />
+                                    <m:Text text="{Store/Name}" />
+                                    <m:Label text="Email" />
+                                    <m:Text text="{Store/Email}" />
+                                    <m:Label text="Phone number" />
+                                    <m:Text text="{Store/PhoneNumber}" />
+                                    <m:Label text="Address" />
+                                    <m:Text text="{Store/Address}" />
+                                    <m:Label text="Established" />
+                                    <m:Text text="{Store/Established}" />
+                                    <m:Label text="Floor Area" />
+                                    <m:Text text="{Store/FloorArea} sq.m" />
+                                </f:content>
+                            </f:SimpleForm>
+                        </m:VBox>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+            <ObjectPageSection
+                titleUppercase="false"
+                title="Feedback"
+            >
+                <subSections>
+                    <ObjectPageSubSection>
+                        <m:VBox>
+                            <m:FeedInput
+                                post="onPost"
+                                class="sapUiSmallMarginTopBottom"
+                            />
+                            <m:List
+                                showSeparators="Inner"
+                                items="{Comment}"
+                            >
+                                <m:FeedListItem
+                                    sender="{Author}"
+                                    timestamp="{Posted}"
+                                    text="{Message}"
+                                />
+                            </m:List>
+                        </m:VBox>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+        </sections>
+    </ObjectPageLayout>
+</mvc:View>

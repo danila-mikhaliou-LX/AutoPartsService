@@ -1,0 +1,187 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "service",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.19.5",
+      "toolsId": "c2c9c3c4-cb3e-4f63-8911-393f1ac602e1"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/root/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "service-maintain": {
+          "semanticObject": "service",
+          "action": "maintain",
+          "title": "{{service-maintain.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.144.1",
+      "libs": {
+        "sap.f": {},
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {},
+        "sap.uxap": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "service.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "appModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {
+          "defaultBindingMode": "TwoWay"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router",
+        "controlId": "layout",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "service.view",
+        "async": true,
+        "viewPath": "service.view"
+      },
+      "routes": [
+        {
+          "name": "RouteProductList",
+          "pattern": "",
+          "target": ["TargetProductList"]
+        },
+        {
+          "name": "RouteProduct",
+          "pattern": "product/{ProductID}/layout/{layout}",
+          "target": ["TargetProductList", "TargetProduct"]
+        },
+        {
+          "name": "RouteCreateProduct",
+          "pattern": "productCreate",
+          "target": ["TargetProductList", "TargetCreateProduct"]
+        },
+        {
+          "name": "RouteCart",
+          "pattern": "cart",
+          "target": ["TargetProductList", "TargetCart"]
+        },
+        {
+          "name": "RouteOrderList",
+          "pattern": "Orders",
+          "target": ["TargetProductList", "TargetOrderList"]
+        },
+        {
+          "name": "RouteOrder",
+          "pattern": "Order/{OrderID}/layout/{layout}",
+          "target": ["TargetProductList", "TargetOrder"]
+        }
+      ],
+      "targets": {
+        "TargetProductList": {
+          "id": "ProductList",
+          "name": "ProductList",
+          "controlAggregation": "beginColumnPages"
+        },
+        "TargetProduct": {
+          "id": "Product",
+          "name": "Product",
+          "controlAggregation": "midColumnPages"
+        },
+        "TargetCart": {
+          "id": "Cart",
+          "name": "Cart",
+          "controlAggregation": "midColumnPages"
+        },
+        "TargetCreateProduct": {
+          "id": "CreateProduct",
+          "name": "CreateProduct",
+          "controlAggregation": "midColumnPages"
+        },
+        "TargetOrderList": {
+          "id": "OrderList",
+          "name": "OrderList",
+          "controlAggregation": "midColumnPages"
+        },
+        "TargetOrder": {
+          "id": "Order",
+          "name": "Order",
+          "controlAggregation": "midColumnPages"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "service.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    }
+  }
+}

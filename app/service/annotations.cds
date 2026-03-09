@@ -1,0 +1,1 @@
+using StoreService as service from '../../srv/store-service';

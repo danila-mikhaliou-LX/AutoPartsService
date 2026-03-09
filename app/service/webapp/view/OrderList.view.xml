@@ -1,0 +1,49 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="service.controller.OrderList"
+    height="100%"
+>
+    <Page title="Orders ({/Orders/$count})">
+        <content>
+            <List
+                growing="true"
+                growingThreshold="6"
+                items="{
+                    path: '/Orders',
+                    parameters: {
+                        $expand: 'Items'
+                    },
+                    sorter: {
+                        path: 'createdAt',
+                        descending: true
+                    }
+                }"
+            >
+                <items>
+                    <ObjectListItem
+                        title="Order: #{= ${ID}.substring(0,8) }"
+                        type="Active"
+                        press="onOrderPress"
+                        number="{
+                            path: 'Price_amount',
+                            type: 'sap.ui.model.type.Float',
+                            formatOptions: {
+                                minFractionDigits: 2,
+                                maxFractionDigits: 2
+                            }
+                        }"
+                        numberUnit="{Price_currency}"
+                    >
+                        <attributes>
+                            <ObjectAttribute
+                                title="Items Count"
+                                text="{Items/$count}"
+                            />
+                        </attributes>
+                    </ObjectListItem>
+                </items>
+            </List>
+        </content>
+    </Page>
+</mvc:View>
