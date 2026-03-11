@@ -4,15 +4,14 @@
     controllerName="service.controller.Order"
     height="100%"
 >
-    <!-- We use the showFooter and dynamic page approaches often, but Page is good for FCL end column -->
     <Page
-        title="Order Details"
+        title="{i18n>orderDetails}"
         showNavButton="{= ${appModel>/layout} !== 'OneColumn' }"
         navButtonPress="onNavBack"
     >
         <content>
             <ObjectHeader
-                title="Order #{= ${ID}.substring(0,8) }"
+                title="{i18n>order} #{= ${ID}.substring(0,8) }"
                 number="{
                     path: 'Price_amount',
                     type: 'sap.ui.model.type.Float',
@@ -26,16 +25,16 @@
             >
                 <attributes>
                     <ObjectAttribute
-                        title="Created Date"
+                        title="{i18n>createdDate}"
                         text="{
                             path: 'createdAt',
                             formatOptions: {
-                                style: 'long'
+                                style: 'medium'
                             }
                         }"
                     />
                     <ObjectAttribute
-                        title="Estimated Delivery"
+                        title="{i18n>estimatedDelivery}"
                         text="{
                             path: 'createdAt',
                             formatter: '.formatter.deliveryDate'
@@ -56,14 +55,14 @@
                 <headerToolbar>
                     <OverflowToolbar>
                         <Title
-                            text="Products ({Items/$count})"
+                            text="{i18n>products} ({Items/$count})"
                             level="H2"
                         />
                     </OverflowToolbar>
                 </headerToolbar>
                 <columns>
                     <Column>
-                        <Text text="Product" />
+                        <Text text="{i18n>products}" />
                     </Column>
                     <Column
                         hAlign="Center"
@@ -71,7 +70,7 @@
                         minScreenWidth="Tablet"
                         popinDisplay="Inline"
                     >
-                        <Text text="Quantity" />
+                        <Text text="{i18n>quantity}" />
                     </Column>
                     <Column
                         hAlign="End"
@@ -79,7 +78,7 @@
                         minScreenWidth="Desktop"
                         popinDisplay="Inline"
                     >
-                        <Text text="Price per unit" />
+                        <Text text="{i18n>pricePerUnit}" />
                     </Column>
                     <Column
                         hAlign="End"
@@ -87,7 +86,7 @@
                         minScreenWidth="Tablet"
                         popinDisplay="WithoutHeader"
                     >
-                        <Text text="Total Price" />
+                        <Text text="{i18n>totalPrice}" />
                     </Column>
                 </columns>
                 <items>
@@ -105,7 +104,6 @@
                                     }
                                 }"
                                 unit="{Product/Price_currency}"
-                                state="None"
                             />
                             <ObjectNumber
                                 number="{

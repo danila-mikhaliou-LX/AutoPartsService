@@ -4,7 +4,7 @@
     controllerName="service.controller.OrderList"
     height="100%"
 >
-    <Page title="Orders ({/Orders/$count})">
+    <Page title="{i18n>orders} ({/Orders/$count})">
         <content>
             <List
                 growing="true"
@@ -22,7 +22,7 @@
             >
                 <items>
                     <ObjectListItem
-                        title="Order: #{= ${ID}.substring(0,8) }"
+                        title="{i18n>order}: #{= ${ID}.substring(0,8) }"
                         type="Active"
                         press="onOrderPress"
                         number="{
@@ -37,8 +37,17 @@
                     >
                         <attributes>
                             <ObjectAttribute
-                                title="Items Count"
+                                title="{i18n>itemsCount}"
                                 text="{Items/$count}"
+                            />
+                            <ObjectAttribute
+                                title="{i18n>createdAt}"
+                                text="{
+                            path: 'createdAt',
+                            formatOptions: {
+                                style: 'long'
+                            }
+                        }"
                             />
                         </attributes>
                     </ObjectListItem>

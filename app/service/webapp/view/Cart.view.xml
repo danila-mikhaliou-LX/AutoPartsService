@@ -5,7 +5,7 @@
     height="100%"
 >
     <Page
-        title="Cart"
+        title="{i18n>cart}"
         showFooter="true"
         showNavButton="true"
         navButtonPress="onCloseCart"
@@ -33,7 +33,7 @@
                                     level="H5"
                                 />
                                 <Text
-                                    text="Store: {appModel>Store/Name}"
+                                    text="{i18n>store}: {appModel>Store/Name}"
                                     class="sapUiTinyMarginBottom"
                                 />
                                 <ObjectStatus
@@ -96,13 +96,13 @@
                 <ToolbarSpacer />
                 <Button
                     type="Accept"
-                    text="Create Order"
+                    text="{i18n>createOrder}"
                     press="onCreateOrder"
                     visible="{= ${appModel>/Cart}.length > 0 }"
                 />
                 <Button
                     type="Reject"
-                    text="Clean Cart"
+                    text="{i18n>cleanCart}"
                     press="onCleanCart"
                     visible="{= ${appModel>/Cart}.length > 0 }"
                 />

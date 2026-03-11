@@ -6,7 +6,7 @@
     xmlns:core="sap.ui.core"
 >
     <Page
-        title="Creating product"
+        title="{i18n>creatingProduct}"
         showNavButton="true"
         navButtonPress="onCancel"
     >
@@ -14,7 +14,7 @@
             <f:SimpleForm
                 editable="true"
                 layout="ResponsiveGridLayout"
-                title="New Product"
+                title="{i18n>newProduct}"
                 labelSpanXL="4"
                 labelSpanL="4"
                 labelSpanM="4"
@@ -30,19 +30,19 @@
                 singleContainerFullSize="false"
             >
                 <f:content>
-                    <core:Title text="Main info" />
+                    <core:Title text="{i18n>mainInfo}" />
 
                     <Label
-                        text="Name"
+                        text="{i18n>name}"
                         required="true"
                     />
                     <Input
                         value="{appModel>/newProduct/Name}"
-                        placeholder="Name of the product"
+                        placeholder="{i18n>nameOfTheProduct}"
                     />
 
                     <Label
-                        text="Shop"
+                        text="{i18n>shop}"
                         required="true"
                     />
                     <Select
@@ -56,25 +56,25 @@
                         />
                     </Select>
 
-                    <Label text="Status" />
+                    <Label text="{i18n>status}" />
                     <Select selectedKey="{appModel>/newProduct/Status}">
                         <core:Item
                             key="OK"
-                            text="Accepted"
+                            text="{i18n>accepted}"
                         />
                         <core:Item
                             key="OUT_OF_STOCK"
-                            text="Out of Stock"
+                            text="{i18n>outOfStock}"
                         />
                         <core:Item
                             key="STORAGE"
-                            text="Warning"
+                            text="{i18n>warning}"
                         />
                     </Select>
 
-                    <core:Title text="Price and Rating" />
+                    <core:Title text="{i18n>priceAndRating}" />
 
-                    <Label text="Price" />
+                    <Label text="{i18n>price}" />
                     <Input
                         value="{
       path: 'appModel>/newProduct/Price_amount',
@@ -87,7 +87,7 @@
                         placeholder="0.00"
                     />
 
-                    <Label text="Currency" />
+                    <Label text="{i18n>currency}" />
                     <Select selectedKey="{appModel>/newProduct/Price_currency}">
                         <core:Item
                             key="USD"
@@ -99,36 +99,35 @@
                         />
                     </Select>
 
-                    <Label text="Rating" />
+                    <Label text="{i18n>rating}" />
                     <RatingIndicator
                         value="{appModel>/newProduct/Rating}"
                         maxValue="5"
                     />
 
-                    <core:Title text="Details" />
+                    <core:Title text="{i18n>details}" />
 
-                    <Label text="Made In" />
+                    <Label text="{i18n>madeIn}" />
                     <Input
                         value="{appModel>/newProduct/MadeIn}"
-                        placeholder="Country"
+                        placeholder="{i18n>country}"
                     />
 
-                    <Label text="Prod.Company" />
+                    <Label text="{i18n>prodCompany}" />
                     <Input
                         value="{appModel>/newProduct/ProductionCompanyName}"
                     />
 
-                    <Label text="Suppliers Info" />
+                    <Label text="{i18n>suppliersInfo}" />
                     <Input value="{appModel>/newProduct/SupplierInfo}" />
 
-                    <Label text="Specs" />
+                    <Label text="{i18n>specs}" />
                     <TextArea
                         value="{appModel>/newProduct/Specs}"
                         rows="3"
-                        placeholder=""
                     />
 
-                    <Label text="URL on photo" />
+                    <Label text="{i18n>photoPlaceholder}" />
                     <Input
                         value="{appModel>/newProduct/Photo}"
                         placeholder="https://..."
@@ -141,12 +140,12 @@
             <OverflowToolbar>
                 <ToolbarSpacer />
                 <Button
-                    text="Save"
+                    text="{i18n>save}"
                     type="Emphasized"
                     press="onSave"
                 />
                 <Button
-                    text="Discard"
+                    text="{i18n>discard}"
                     type="Transparent"
                     press="onCancel"
                 />
