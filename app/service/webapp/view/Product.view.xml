@@ -14,15 +14,15 @@
             >
                 <actions>
                     <m:Button
-                        text="Back"
+                        text="{i18n>back}"
                         press="onPressBack"
                     />
                     <m:Button
-                        text="Add to Cart"
+                        text="{i18n>addToCart}"
                         press="onPressAddToCart"
                     />
                     <m:Button
-                        text="Delete"
+                        text="{i18n>delete}"
                         press="onPressDelete"
                     />
                 </actions>
@@ -31,11 +31,11 @@
         <headerContent>
             <m:VBox>
                 <m:ObjectStatus
-                    title="Supplier Info"
+                    title="{i18n>supplierInfo}"
                     text="{SupplierInfo}"
                 />
                 <m:ObjectStatus
-                    title="Status"
+                    title="{i18n>status}"
                     text="{path: 'Status', formatter: '.formatter.statusText'}"
                     state="{path: 'Status', formatter: '.formatter.statusState'}"
                     inverted="true"
@@ -67,28 +67,30 @@
         <sections>
             <ObjectPageSection
                 titleUppercase="false"
-                title="Store Info"
+                title="{i18n>storeInfo}"
             >
                 <subSections>
                     <ObjectPageSubSection>
                         <m:VBox class="sapUiSmallMargin">
                             <f:SimpleForm
                                 editable="false"
-                                title="Store Info"
+                                title="{i18n>storeInfo}"
                             >
                                 <f:content>
-                                    <m:Label text="Name" />
+                                    <m:Label text="{i18n>name}" />
                                     <m:Text text="{Store/Name}" />
-                                    <m:Label text="Email" />
+                                    <m:Label text="{i18n>email}" />
                                     <m:Text text="{Store/Email}" />
-                                    <m:Label text="Phone number" />
+                                    <m:Label text="{i18n>phoneNumber}" />
                                     <m:Text text="{Store/PhoneNumber}" />
-                                    <m:Label text="Address" />
+                                    <m:Label text="{i18n>address}" />
                                     <m:Text text="{Store/Address}" />
-                                    <m:Label text="Established" />
+                                    <m:Label text="{i18n>established}" />
                                     <m:Text text="{Store/Established}" />
-                                    <m:Label text="Floor Area" />
-                                    <m:Text text="{Store/FloorArea} sq.m" />
+                                    <m:Label text="{i18n>floorArea}" />
+                                    <m:Text
+                                        text="{Store/FloorArea} {i18n>sqm}"
+                                    />
                                 </f:content>
                             </f:SimpleForm>
                         </m:VBox>
@@ -97,7 +99,7 @@
             </ObjectPageSection>
             <ObjectPageSection
                 titleUppercase="false"
-                title="Feedback"
+                title="{i18n>feedback}"
             >
                 <subSections>
                     <ObjectPageSubSection>

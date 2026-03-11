@@ -42,7 +42,6 @@ Ensure you have the following installed on your machine:
    git clone [https://github.com/danila-mikhaliou-LX/AutoPartsService.git](https://github.com/danila-mikhaliou-LX/AutoPartsService.git)
    cd AutoPartsService
 
-
 File or Folder | Purpose
 ---------|----------
 `app/` | content for UI frontends goes here

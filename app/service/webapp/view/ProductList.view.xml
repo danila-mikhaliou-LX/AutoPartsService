@@ -9,16 +9,16 @@
         <f:title>
             <f:DynamicPageTitle>
                 <f:heading>
-                    <Title text="Products ({/Products/$count})" />
+                    <Title text="{i18n>products} ({/Products/$count})" />
                 </f:heading>
                 <f:actions>
                     <Button
-                        text="Orders "
+                        text="{i18n>orders} "
                         press="onPressOrders"
                     />
 
                     <Button
-                        text="Cart ({= ${appModel>/CartWeight}})"
+                        text="{i18n>cart} ({= ${appModel>/CartWeight}})"
                         press="onPressCart"
                     />
                 </f:actions>
@@ -35,7 +35,7 @@
                     />
                     <OverflowToolbarButton
                         icon="sap-icon://add"
-                        text="Add"
+                        text="{i18n>add}"
                         type="Transparent"
                         press="onPressAddProduct"
                     />
@@ -59,13 +59,13 @@
                 >
                     <columns>
                         <Column width="12em">
-                            <Text text="Product" />
+                            <Text text="{i18n>product}" />
                         </Column>
                         <Column hAlign="End">
-                            <Text text="Status" />
+                            <Text text="{i18n>status}" />
                         </Column>
                         <Column hAlign="End">
-                            <Text text="Price" />
+                            <Text text="{i18n>price}" />
                         </Column>
                     </columns>
                     <items>

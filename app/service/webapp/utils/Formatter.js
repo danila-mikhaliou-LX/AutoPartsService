@@ -3,7 +3,12 @@ sap.ui.define(['sap/ui/core/format/DateFormat'], function (DateFormat) {
 
   return {
     statusText: function (sStatus) {
-      return sStatus === 'OUT_OF_STOCK' ? 'Out of stock' : sStatus === 'OK' ? 'Available' : 'Storage';
+      const oResourceBundle = this.getView().getModel('i18n').getResourceBundle();
+      return sStatus === 'OUT_OF_STOCK'
+        ? oResourceBundle.getText('outOfStock')
+        : sStatus === 'OK'
+          ? oResourceBundle.getText('available')
+          : oResourceBundle.getText('storage');
     },
 
     statusState: function (sStatus) {
@@ -11,12 +16,22 @@ sap.ui.define(['sap/ui/core/format/DateFormat'], function (DateFormat) {
     },
 
     deliveryDate: function (sDate) {
-      if (!sDate) return "";
-      const oDate = new Date(sDate);
-      if (isNaN(oDate.getTime())) return "";
+      if (!sDate) return '';
+      let oDate = new Date(sDate);
+      if (isNaN(oDate.getTime())) {
+        const oDateTimeParser = DateFormat.getDateTimeInstance({ style: 'medium' });
+        oDate = oDateTimeParser.parse(sDate);
+        if (!oDate) return '';
+      }
       oDate.setDate(oDate.getDate() + 5);
-      const oDateFormat = DateFormat.getDateInstance({style: "medium"});
-      return oDateFormat.format(new Date(oDate));
-    }
+      const oDateFormatter = DateFormat.getDateInstance({ style: 'medium' });
+      return oDateFormatter.format(oDate);
+    },
+
+    calculateTotal: function (vPrice, vQuantity) {
+      if (!vPrice || !vQuantity) return '0.00';
+      const fTotal = parseFloat(vPrice) * parseFloat(vQuantity);
+      return fTotal.toFixed(2);
+    },
   };
 });
