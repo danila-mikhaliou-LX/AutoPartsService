@@ -17,7 +17,10 @@ sap.ui.define(
         const oRouter = this.getOwnerComponent().getRouter();
         const oAppModel = this.getView().getModel('appModel');
         const oNewProduct = { ...this.getView().getModel('appModel').getData().newProduct };
-
+        const sCreatedProductSuccess = this.getOwnerComponent()
+          .getModel('i18n')
+          .getResourceBundle()
+          .getText('createdProductSuccess');
         this.getView()
           .getModel()
           .bindList('/Products')
@@ -27,6 +30,7 @@ sap.ui.define(
             oAppModel.setProperty('/layout', 'OneColumn');
             oRouter.navTo('RouteProductList');
             this.getView().getModel().refresh();
+            sap.m.MessageToast.show(sCreatedProductSuccess);
           });
       },
       onCancel() {

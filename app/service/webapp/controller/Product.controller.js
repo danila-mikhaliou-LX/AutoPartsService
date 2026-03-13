@@ -61,6 +61,10 @@ sap.ui.define(
       },
 
       onPressDelete() {
+        const sDeleteProductSuccess = this.getOwnerComponent()
+          .getModel('i18n')
+          .getResourceBundle()
+          .getText('deleteProductSuccess');
         this.getView()
           .getBindingContext()
           .delete()
@@ -68,6 +72,7 @@ sap.ui.define(
             this.getView().getModel().refresh();
             this.getView().getModel('appModel').setProperty('/layout', 'OneColumn');
             this.getOwnerComponent().getRouter().navTo('RouteProductList');
+            sap.m.MessageToast.show(sDeleteProductSuccess);
           });
         const aCart = this.getView().getModel('appModel').getProperty('/Cart');
         const sProductID = this.getView().getModel('appModel').getProperty('/ProductID');
@@ -93,6 +98,7 @@ sap.ui.define(
           .created()
           .then(() => this.getView().getModel().refresh());
       },
+      
     });
   },
 );

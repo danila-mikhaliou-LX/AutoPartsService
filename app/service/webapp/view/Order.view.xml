@@ -26,12 +26,7 @@
                 <attributes>
                     <ObjectAttribute
                         title="{i18n>createdDate}"
-                        text="{
-                            path: 'createdAt',
-                            formatOptions: {
-                                style: 'medium'
-                            }
-                        }"
+                        text="{createdAt}"
                     />
                     <ObjectAttribute
                         title="{i18n>estimatedDelivery}"

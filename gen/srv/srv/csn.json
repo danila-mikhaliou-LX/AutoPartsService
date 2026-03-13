@@ -199,6 +199,18 @@
           ],
           "type": "cds.Integer"
         },
+        "Weight": {
+          "type": "cds.Integer"
+        },
+        "Size": {
+          "type": "cds.String"
+        },
+        "Category": {
+          "type": "cds.String"
+        },
+        "Materials": {
+          "type": "cds.String"
+        },
         "SupplierInfo": {
           "type": "cds.String",
           "length": 2000
@@ -727,6 +739,18 @@
             5
           ],
           "type": "cds.Integer"
+        },
+        "Weight": {
+          "type": "cds.Integer"
+        },
+        "Size": {
+          "type": "cds.String"
+        },
+        "Category": {
+          "type": "cds.String"
+        },
+        "Materials": {
+          "type": "cds.String"
         },
         "SupplierInfo": {
           "type": "cds.String",
