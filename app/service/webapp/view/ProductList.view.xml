@@ -21,20 +21,96 @@
                         text="{i18n>cart} ({= ${appModel>/CartWeight}})"
                         press="onPressCart"
                     />
+                    <Button
+                        icon="sap-icon://world"
+                        tooltip="RU / EN"
+                        press="onToggleLanguage"
+                        type="Transparent"
+                    />
+
+                    <Button
+                        icon="sap-icon://palette"
+                        tooltip="{i18n>toggleTheme}"
+                        press="onToggleTheme"
+                        type="Transparent"
+                    />
                 </f:actions>
             </f:DynamicPageTitle>
         </f:title>
 
         <f:content>
-            <VBox fitContainer="true">
+            <VBox>
                 <OverflowToolbar class="sapFDynamicPageAlignContent">
                     <ToolbarSpacer />
                     <SearchField
+                        id="searchFieldName"
                         search="onSearch"
-                        width="17.5rem"
+                        width="15rem"
                     />
+                    <HBox alignItems="Center">
+                        <Label
+                            text="{i18n>price}:"
+                            class="sapUiTinyMarginEnd"
+                        />
+                        <RangeSlider
+                            id="sliderPrice"
+                            change="onSearch"
+                            showAdvancedTooltip="true"
+                            min="0"
+                            max="1000"
+                            width="15rem"
+                        />
+                    </HBox>
+                    <ToolbarSeparator />
+
+                    <HBox alignItems="Center">
+                        <Label
+                            text="{i18n>status}:"
+                            class="sapUiTinyMarginEnd"
+                        />
+                        <Select
+                            id="selectStatus"
+                            change="onSearch"
+                        >
+                            <core:ListItem
+                                key=""
+                                text="{i18n>all}"
+                            />
+
+                            <core:ListItem
+                                key="OK"
+                                text="{i18n>available}"
+                            />
+                            <core:ListItem
+                                key="STORAGE"
+                                text="{i18n>storage}"
+                            />
+                            <core:ListItem
+                                key="OUT_OF_STOCK"
+                                text="{i18n>outOfStock}"
+                            />
+                        </Select>
+                    </HBox>
+                    <ToolbarSeparator />
+                    <HBox alignItems="Center">
+                        <Label
+                            text="{i18n>category}:"
+                            class="sapUiTinyMarginEnd"
+                        />
+                        <Select
+                            id="selectCategory"
+                            change="onSearch"
+                            items="{appModel>/Categories}"
+                        >
+                            <core:Item
+                                key="{appModel>key}"
+                                text="{appModel>text}"
+                            />
+                        </Select>
+                    </HBox>
+
                     <OverflowToolbarButton
-                        icon="sap-icon://add"
+                        icon="sap-icon://add-product"
                         text="{i18n>add}"
                         type="Transparent"
                         press="onPressAddProduct"
@@ -56,6 +132,9 @@
                     width="auto"
                     itemPress="onProductPress"
                     mode="SingleSelectMaster"
+                    growing="true"
+                    growingScrollToLoad="true"
+                    growingThreshold="50"
                 >
                     <columns>
                         <Column width="12em">

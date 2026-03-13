@@ -25,6 +25,10 @@ entity Products : cuid, managed {
     0,
     5
   ];
+  Weight                : Integer;
+  Size                  : String;
+  Category              : String;
+  Materials             : String;
   SupplierInfo          : String(2000);
   MadeIn                : String(45);
   ProductionCompanyName : String(100);

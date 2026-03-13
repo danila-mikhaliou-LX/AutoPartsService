@@ -15,13 +15,18 @@ sap.ui.define(['sap/ui/core/UIComponent'], (UIComponent) => {
       oAppModel.setProperty('/Cart', []);
       oAppModel.setProperty('/CartWeight', 0);
       oAppModel.setProperty('/TotalPrice', 0);
+      oAppModel.setProperty('/Categories', []);
       oAppModel.setProperty('/newProduct', {
         Name: '',
         Price_amount: '',
         Price_currency: 'USD',
-        Photo: '',
+        Photo: 'sap-icon://product',
         Specs: '',
         Rating: '',
+        Weight: '',
+        Size: '',
+        Category: '',
+        Materials: '',
         SupplierInfo: '',
         MadeIn: '',
         ProductionCompanyName: '',

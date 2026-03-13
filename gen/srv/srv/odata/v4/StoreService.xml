@@ -74,6 +74,10 @@
         <Property Name="Photo" Type="Edm.String" MaxLength="100"/>
         <Property Name="Specs" Type="Edm.String" MaxLength="2000"/>
         <Property Name="Rating" Type="Edm.Int32"/>
+        <Property Name="Weight" Type="Edm.Int32"/>
+        <Property Name="Size" Type="Edm.String"/>
+        <Property Name="Category" Type="Edm.String"/>
+        <Property Name="Materials" Type="Edm.String"/>
         <Property Name="SupplierInfo" Type="Edm.String" MaxLength="2000"/>
         <Property Name="MadeIn" Type="Edm.String" MaxLength="45"/>
         <Property Name="ProductionCompanyName" Type="Edm.String" MaxLength="100"/>

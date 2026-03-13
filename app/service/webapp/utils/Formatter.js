@@ -19,12 +19,12 @@ sap.ui.define(['sap/ui/core/format/DateFormat'], function (DateFormat) {
       if (!sDate) return '';
       let oDate = new Date(sDate);
       if (isNaN(oDate.getTime())) {
-        const oDateTimeParser = DateFormat.getDateTimeInstance({ style: 'medium' });
+        const oDateTimeParser = DateFormat.getDateTimeInstance({ style: 'long' });
         oDate = oDateTimeParser.parse(sDate);
         if (!oDate) return '';
       }
       oDate.setDate(oDate.getDate() + 5);
-      const oDateFormatter = DateFormat.getDateInstance({ style: 'medium' });
+      const oDateFormatter = DateFormat.getDateInstance({ style: 'long' });
       return oDateFormatter.format(oDate);
     },
 
@@ -32,6 +32,15 @@ sap.ui.define(['sap/ui/core/format/DateFormat'], function (DateFormat) {
       if (!vPrice || !vQuantity) return '0.00';
       const fTotal = parseFloat(vPrice) * parseFloat(vQuantity);
       return fTotal.toFixed(2);
+    },
+    materialText: function (sMaterial) {
+      return this.getOwnerComponent().getModel('i18n').getResourceBundle().getText(sMaterial);
+    },
+    categoryText: function (sCategory) {
+      return this.getOwnerComponent()
+        .getModel('i18n')
+        .getResourceBundle()
+        .getText(sCategory.replace(' ', ''));
     },
   };
 });

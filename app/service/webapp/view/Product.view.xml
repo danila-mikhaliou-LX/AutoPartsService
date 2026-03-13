@@ -30,16 +30,42 @@
         </headerTitle>
         <headerContent>
             <m:VBox>
+                <m:Avatar
+                    src="{Photo}"
+                    fallbackIcon="sap-icon://product"
+                    displaySize="XL"
+                    displayShape="Square"
+                />
+
                 <m:ObjectStatus
                     title="{i18n>supplierInfo}"
                     text="{SupplierInfo}"
                 />
+                <m:ObjectStatus
+                    title="{i18n>category}"
+                    text="{path: 'Category', formatter: '.formatter.categoryText'}"
+                />
+
                 <m:ObjectStatus
                     title="{i18n>status}"
                     text="{path: 'Status', formatter: '.formatter.statusText'}"
                     state="{path: 'Status', formatter: '.formatter.statusState'}"
                     inverted="true"
                 />
+                <m:ObjectStatus
+                    title="{i18n>weight}"
+                    text="{Weight} {i18n>g}"
+                />
+                <m:ObjectStatus
+                    title="{i18n>size}"
+                    text="{Size} {i18n>sm}"
+                />
+                <m:ObjectStatus
+                    title="{i18n>materials}"
+                    text="{ path: 'Materials',
+                    formatter: '.formatter.materialText'}"
+                />
+
                 <m:RatingIndicator
                     editable="false"
                     maxValue="5"
@@ -55,12 +81,6 @@
         formatOptions: {showMeasure: false}
     }"
                     unit="{Price_currency}"
-                />
-
-                <m:Image
-                    class='sapUiSmallMarginTop'
-                    src="{Photo}"
-                    width="40%"
                 />
             </m:VBox>
         </headerContent>

@@ -63,7 +63,10 @@ sap.ui.define(
         const oAppModel = this.getView().getModel('appModel');
         const aCart = oAppModel.getProperty('/Cart') || [];
         const sTotalPrice = oAppModel.getProperty('/TotalPrice');
-
+        const sCreatedOrderSuccess = this.getOwnerComponent()
+          .getModel('i18n')
+          .getResourceBundle()
+          .getText('createdOrderSuccess');
         const aOrderItems = aCart.map(function (oProduct) {
           return {
             Product_ID: oProduct.ID,
@@ -89,7 +92,7 @@ sap.ui.define(
           .created()
           .then(() => {
             this.getView().setBusy(false);
-            sap.m.MessageToast.show('Order created successfully');
+            sap.m.MessageToast.show(sCreatedOrderSuccess);
 
             oAppModel.setProperty('/Cart', []);
             oAppModel.setProperty('/TotalPrice', 0);
